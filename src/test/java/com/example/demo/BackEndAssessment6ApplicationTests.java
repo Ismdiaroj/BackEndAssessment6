@@ -2,10 +2,8 @@ package com.example.demo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
-
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.equalTo;
