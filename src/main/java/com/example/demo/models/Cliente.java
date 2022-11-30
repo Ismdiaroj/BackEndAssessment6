@@ -2,7 +2,14 @@ package com.example.demo.models;
 
 import java.util.List;
 
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -16,12 +23,23 @@ import lombok.experimental.Accessors;
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor @Accessors(fluent = true) 
 public class Cliente {
 	
-	@Setter(value = AccessLevel.PRIVATE) private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
+	private String name;
+	
+	private String email;
+	
+	private String telefono;
 	
 	private String contrato;
 	
+	@OneToMany(mappedBy="cliente")
 	private List<Contacto> contactos;
 	
+	@OneToOne
+	@JoinColumn(name="cliente_id")
 	private Oportunidad oportunidad;
 	
 	
@@ -29,6 +47,8 @@ public class Cliente {
 	
 	public void addContacto(Contacto contacto) {
 		this.contactos.add(contacto);
-		contacto.setClienteId(this.getId());
+		contacto.cliente(this);
 	}
+	
+	
 }
