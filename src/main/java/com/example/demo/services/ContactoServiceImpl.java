@@ -38,7 +38,7 @@ public class ContactoServiceImpl implements ContactoService {
 
 	@Override
 	public boolean borrarContacto(Contacto contacto) {
-		if (contacto != null && contacto.id() != null) {
+		if (contacto != null && contacto.getId() != null) {
 			contactoRepository.delete(contacto);
 			return true;
 		} else

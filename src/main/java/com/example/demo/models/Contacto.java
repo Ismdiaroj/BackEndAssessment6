@@ -20,7 +20,6 @@ import lombok.experimental.Accessors;
 
 @Entity
 @Table(name="contacto")
-@Getter @Setter @AllArgsConstructor @NoArgsConstructor @Accessors(fluent = true)
 public class Contacto {
 
 	@Id
@@ -44,6 +43,10 @@ public class Contacto {
 
 	
 	
+	
+	public Contacto() {
+	}
+
 	public Contacto(String canal, LocalDate fecha, String mensaje) {
 		this.canal = canal;
 		this.fecha = fecha;
@@ -63,6 +66,67 @@ public class Contacto {
 		this.mensaje = mensaje;
 		this.cliente = cliente;
 	}
+
+	public Contacto(Long id, String canal, LocalDate fecha, String mensaje, Oportunidad oportunidad, Cliente cliente) {
+		this.id = id;
+		this.canal = canal;
+		this.fecha = fecha;
+		this.mensaje = mensaje;
+		this.oportunidad = oportunidad;
+		this.cliente = cliente;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getCanal() {
+		return canal;
+	}
+
+	public void setCanal(String canal) {
+		this.canal = canal;
+	}
+
+	public LocalDate getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(LocalDate fecha) {
+		this.fecha = fecha;
+	}
+
+	public String getMensaje() {
+		return mensaje;
+	}
+
+	public void setMensaje(String mensaje) {
+		this.mensaje = mensaje;
+	}
+
+	public Oportunidad getOportunidad() {
+		return oportunidad;
+	}
+
+	public void setOportunidad(Oportunidad oportunidad) {
+		this.oportunidad = oportunidad;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+	
+	
+	
+	
 	
 	
 	

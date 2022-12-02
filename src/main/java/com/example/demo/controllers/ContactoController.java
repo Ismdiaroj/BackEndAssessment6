@@ -43,12 +43,12 @@ public class ContactoController {
 		
 		for(Contacto c : contactos_persistidos) {
 			ContactoDTO contactoDto = new ContactoDTO(
-												c.id(),
-												c.canal(),
-												c.fecha(),
-												c.mensaje(),
-												c.oportunidad().id(),
-												c.cliente().id()
+												c.getId(),
+												c.getCanal(),
+												c.getFecha(),
+												c.getMensaje(),
+												c.getOportunidad().getId(),
+												c.getCliente().getId()
 					);
 			contactos_return.add(contactoDto);
 		}
@@ -63,59 +63,35 @@ public class ContactoController {
 		
 		Contacto contacto_persistido = contactoService.insertarContacto(
 					new Contacto(
-							contactoDto.canal(),
-							contactoDto.fecha(),
-							contactoDto.mensaje()
+							contactoDto.getCanal(),
+							contactoDto.getFecha(),
+							contactoDto.getMensaje()
 							)
 				);
 		
 		contacto_return = new ContactoDTO(
-				contacto_persistido.id(),
-				contacto_persistido.canal(),
-				contacto_persistido.fecha(),
-				contacto_persistido.mensaje(),
-				contacto_persistido.cliente().id(),
-				contacto_persistido.oportunidad().id()
-				
+				contacto_persistido.getId(),
+				contacto_persistido.getCanal(),
+				contacto_persistido.getFecha(),
+				contacto_persistido.getMensaje()
 				);
 		
-		if(contactoDto.cliente_id()!=null) {
-			Cliente cliente = clienteService.findClienteById(contactoDto.cliente_id());
+		if(contactoDto.getCliente_id()!=null) {
+			Cliente cliente = clienteService.findClienteById(contactoDto.getCliente_id());
 			
 			cliente.addContacto(contacto_persistido);
 			clienteService.insertarCliente(cliente);
-			contacto_return.cliente_id(cliente.id());
+			contacto_return.setCliente_id(cliente.getId());
 			
 		}
-		if(contactoDto.oportunidad_id()!=null) {
-			Oportunidad oportunidad= oportunidadService.findOportunidadById(contactoDto.oportunidad_id());
+		if(contactoDto.getOportunidad_id()!=null) {
+			Oportunidad oportunidad= oportunidadService.findOportunidadById(contactoDto.getOportunidad_id());
 			oportunidad.addContacto(contacto_persistido);
 			oportunidadService.insertarOportunidad(oportunidad);
-			contacto_return.oportunidad_id(oportunidad.id());
+			contacto_return.setOportunidad_id(oportunidad.getId());
 		}
 		
 		return new ResponseEntity<>(contacto_return,HttpStatus.OK);
 	}
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

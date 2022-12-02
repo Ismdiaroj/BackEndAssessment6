@@ -26,15 +26,16 @@ public class OportunidadServiceImpl implements OportunidadService{
 
 	@Override
 	public Oportunidad insertarOportunidad(Oportunidad oportunidad) {
-		if (oportunidad != null && oportunidad.id() == null && findOportunidadByEmail(oportunidad.email()) == null)
-			return oportunidadRepository.save(oportunidad);			
-		else
-			return null;
+//		if (oportunidad != null && oportunidad.id() == null && findOportunidadByEmail(oportunidad.email()) == null)
+//			return oportunidadRepository.save(oportunidad);			
+//		else
+//			return null;
+		return oportunidadRepository.save(oportunidad);
 	}
 
 	@Override
 	public Oportunidad actualizarOportunidad(Oportunidad oportunidad) {
-		if (oportunidad == null || oportunidad.id() == null)
+		if (oportunidad == null || oportunidad.getId() == null)
 			return null;
 		else
 			return oportunidadRepository.save(oportunidad); 
@@ -42,7 +43,7 @@ public class OportunidadServiceImpl implements OportunidadService{
 
 	@Override
 	public boolean borrarUsuario(Oportunidad oportunidad) {
-		if (oportunidad != null && oportunidad.id() != null) {
+		if (oportunidad != null && oportunidad.getId() != null) {
 			oportunidadRepository.delete(oportunidad);
 			return true;
 		} else

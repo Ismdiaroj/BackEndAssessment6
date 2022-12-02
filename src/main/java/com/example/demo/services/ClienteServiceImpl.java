@@ -28,17 +28,13 @@ public class ClienteServiceImpl implements ClienteService {
 
 	@Override
 	public Cliente insertarCliente(Cliente cliente) {
-		if (cliente != null && cliente.id() == null && findClienteByEmail(cliente.email()) == null 
-				&& findClienteByEmail(cliente.email()) == null)
-			return clienteRepository.save(cliente);			
-		else
-			return null;
+		return clienteRepository.save(cliente);
 	}
 
 
 	@Override
 	public Cliente actualizarCliente(Cliente cliente) {
-		if (cliente == null || cliente.id() == null)
+		if (cliente == null || cliente.getId() == null)
 			return null;
 		else
 			return clienteRepository.save(cliente); 	
@@ -46,7 +42,7 @@ public class ClienteServiceImpl implements ClienteService {
 
 	@Override
 	public boolean borrarCliente(Cliente cliente) {
-		if (cliente != null && cliente.id() != null) {
+		if (cliente != null && cliente.getId() != null) {
 			clienteRepository.delete(cliente);
 			return true;
 		} else
